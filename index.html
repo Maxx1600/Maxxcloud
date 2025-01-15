@@ -1,1 +1,238 @@
-<iframe id="" allowtransparency="true" allowfullscreen="true" allow="geolocation; microphone; camera" src="https://2c4tbyb6.forms.app/form/678696155b87765987eb6b82" frameborder="0" style="width: 100; min-width:100; height:600; border:none;"></iframe>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maxxcloud</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background-color: #ffffff; /* Weißer Hintergrund statt Bild */
+      transition: background-color 0.3s ease, color 0.3s ease;
+      height: 200%; /* Seite verlängern, damit man weiter scrollen kann */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Light Mode */
+    body.light-mode {
+      background-color: #ffffff;
+      color: #000000; /* Schwarze Schrift im Light Mode */
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background-color: #121212;
+      color: #313332; /* Weiße Schrift im Dark Mode */
+    }
+
+    /* Titel */
+    h1 {
+      font-size: 4rem;
+      text-align: center;
+      margin: 0;
+      position: absolute;
+      top: 50%; /* Titel in der Mitte der Seite */
+      transform: translateY(-50%); /* Vertikale Ausrichtung */
+      animation: flyUp 2s ease-out 2s forwards; /* Titel nach 2 Sekunden nach oben fliegen lassen */
+      transition: color 0.3s ease; /* Sanfte Farbübergänge */
+    }
+
+    /* Titel im Light Mode */
+    h1.light-mode {
+      color: #313332; /* Schwarzer Titel im Light Mode */
+    }
+
+    /* Titel im Dark Mode */
+    h1.dark-mode {
+      color: #fff; /* Weißer Titel im Dark Mode */
+    }
+
+    /* Discord-Link */
+    .discord-link {
+      font-size: 1.5rem;
+      color: #128FBD;
+      text-decoration: none;
+      margin-top: 20px;
+      display: inline-block;
+      animation: linkAppear 2s ease-out 4s forwards; /* Link erscheint nach dem Titel */
+      position: absolute;
+      top: 60%; /* Discord-Link etwas unterhalb des Titels */
+      left: 20px; /* Verschiebung des Links nach links */
+    }
+
+    .discord-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Schalter für Light/Dark Mode */
+    .theme-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ccc;
+      border-radius: 30px;
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 2;
+    }
+
+    .theme-switcher span {
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #fff;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    /* Dark Mode Schalter */
+    .dark-mode .theme-switcher span {
+      transform: translateX(30px);
+    }
+
+    /* Hover-Effekt für den Schalter */
+    .theme-switcher:hover {
+      background-color: #888;
+    }
+
+    /* Formularbereich */
+    .form-container {
+      margin-top: 150vh; /* Formular weiter nach unten verschieben */
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      position: relative;
+      z-index: 0;
+    }
+
+    /* Dummy-Inhalt für mehr Scrollen */
+    .extra-content {
+      height: 1500px;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    /* Animation für den Titel */
+    @keyframes flyUp {
+      0% {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      100% {
+        top: 20px; /* Titel am oberen Rand fixieren */
+        transform: translateY(0);
+      }
+    }
+
+    /* Animation für den Discord-Link */
+    @keyframes linkAppear {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+</head>
+<body class="light-mode">
+
+  <!-- Schalter für den Light/Dark Mode -->
+  <div class="theme-switcher" onclick="toggleTheme()">
+    <span></span>
+  </div>
+
+  <!-- Titel "Maxxcloud" -->
+  <h1 id="title" class="light-mode">Maxxcloud</h1>
+
+  <!-- Discord-Link -->
+  <a href="https://discord.gg/VJmyUKEfF7" class="discord-link" target="_blank">
+    Discord (Der Support)
+  </a>
+
+  <!-- Formularbereich mit dem Code von forms.app -->
+  <div class="form-container">
+    <button formsappId="678696155b87765987eb6b82"></button>
+    <script src="https://forms.app/static/embed.js" type="text/javascript" async defer onload="new formsapp('678696155b87765987eb6b82', 'slider', {'overlay':'rgba(45,45,45,0.5)','button':{'color':'#128FBD','text':'Sichere deine Daten Jetzt'},'width':'767px','height':'100vh','align':'right'}, 'https://2c4tbyb6.forms.app');"></script>
+  </div>
+
+  <!-- Dummy-Inhalt für mehr Scrollen -->
+  <div class="extra-content"></div>
+
+  <!-- Dateilinks aus Google Spreadsheet -->
+  <h2>Download Links</h2>
+  <ul id="file-list"></ul>
+
+  <script>
+    // Funktion zum Wechseln zwischen Light- und Dark Mode
+    function toggleTheme() {
+      const body = document.body;
+      const themeSwitcher = document.querySelector('.theme-switcher');
+      const title = document.getElementById('title');
+      body.classList.toggle('dark-mode');
+      body.classList.toggle('light-mode');
+
+      // Titel auch anpassen
+      title.classList.toggle('dark-mode');
+      title.classList.toggle('light-mode');
+
+      // Animation für den Schalter
+      themeSwitcher.classList.toggle('dark-mode');
+    }
+
+    // Deine Spreadsheet ID und die Tabellenblatt-ID
+    const SPREADSHEET_ID = '1bsOHGjF_EAa67yUPBF3ONBc77_nkXum_WEDdotQOFRI';  // Deine Google Spreadsheet ID
+    const RANGE = 'Tabelle1!A2:A';  // Zeilen A2 bis Ende
+
+    function loadSheetData() {
+      // API laden
+      gapi.client.init({
+        apiKey: 'AIzaSyALWA_xs3qnWqEJJ8GNqr7xoiWCbH2n94g',  // Dein API-Schlüssel
+        discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4']
+      }).then(() => {
+        // Sheet-Daten abrufen
+        return gapi.client.sheets.spreadsheets.values.get({
+          spreadsheetId: SPREADSHEET_ID,
+          range: RANGE,
+        });
+      }).then((response) => {
+        const links = response.result.values;
+        const fileListElement = document.getElementById('file-list');
+        if (links && links.length > 0) {
+          links.forEach(row => {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = row[0];  // Annahme: Die Links sind in der ersten Spalte
+            link.textContent = row[0];
+            listItem.appendChild(link);
+            fileListElement.appendChild(listItem);
+          });
+        } else {
+          console.log('Keine Daten gefunden.');
+          fileListElement.innerHTML = 'Keine Links gefunden.';
+        }
+      }, (error) => {
+        console.error('Fehler beim Abrufen der Daten:', error);
+      });
+    }
+
+    // API laden und Daten abrufen
+    function start() {
+      gapi.load('client', loadSheetData);
+    }
+  </script>
+
+  <script async defer src="https://apis.google.com/js/api.js?onload=start"></script>
+
+</body>
+</html>
